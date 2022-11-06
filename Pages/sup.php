@@ -28,8 +28,11 @@
             else if ($_GET["error"] == "usernametaken"){
                 echo "<p>This usernaem has already been taken!</p>";
             }
-            else if ($_GET["error"] == "passhort" ){
-                echo "<p>This username has already been taken!</p>";
+            else if ($_GET["error"] == "pass2short" ){
+                echo "<p>Password too short!</p>";
+            }
+            else if ($_GET["error"] == "passwordsdontmatch" ){
+                echo "<p>Password's do not match!</p>";
             }
             else if ($_GET["error"] == "stmtfailed" ){
                 echo "<p>Unexpected Error!</p>";

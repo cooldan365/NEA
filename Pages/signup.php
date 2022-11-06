@@ -14,22 +14,17 @@ if(isset($_POST["submit"])) {
         exit();
     }
 
-    if(invalidUID($usrname) !== false){
+    if(invalidUID($usrname) != false){
         header("location: sup.php?error=invaliduid");
         exit();
     }
-    if(pwdMatch($password,$rpeatpass) !== false){
+    if(pwdMatch($password,$rpeatpass) != false){
         header("location: sup.php?error=passwordsdontmatch");
         exit();
     }
-    if(uidExists($conn,$usrname)!== false){
+    if(uidExists($conn,$usrname)!= false){
         header("location: sup.php?error=usernametaken");
         exit();
-    }
-    if(pwd6($conn,$password) == false){
-        header("location: sup.php?error=passhort");
-        exit();
-
     }
 
     createUser($conn,$usrname,$password);

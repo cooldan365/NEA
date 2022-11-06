@@ -43,8 +43,8 @@ function uidExists($conn , $usrname) {
     mysqli_stmt_bind_param($stmt,"s",$usrname);
     mysqli_stmt_execute($stmt);
 
-    $resultDate = mysqli_stmt_get_result($stmt);
-    if($row = mysqli_fetch_assoc($resultDate)){
+    $resultData = mysqli_stmt_get_result($stmt);
+    if($row = mysqli_fetch_assoc($resultData)){
         return $row;
     }
     else{
@@ -80,3 +80,38 @@ function createUser($conn, $usrname, $password) {
     exit();
 }
 
+function emptyInputLogin($username,$password){
+    $result;
+    if (empty($username) || empty($password)){
+        $result = true;
+    }
+    else{
+        $result = false;
+    }
+    return $result;
+}
+
+function loginUser($conn, $usrname, $password){
+    $uidExists = uidExists($conn,$usrname);
+
+    if($uidExists === false){
+        header("location: logup.php?error=wronglogin");
+        exit();
+    }
+
+    $pwdHashed = $uidExists["usersPwd"];
+    $checkPwd = password_verify($password, $pwdHashed);
+
+    if($checkPwd === false){
+        header("location: logup.php?error=wronglogin");
+        exit();
+    }
+    else if ($checkPwd === true){
+        session_start();
+        $_SESSION["userid"] =  $uidExists["usersId"];
+        $_SESSION["uid"] =  $uidExists["usersUid"];
+        header("location: mainhub.php?");
+        exit();
+
+    }
+}
