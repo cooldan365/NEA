@@ -18,7 +18,7 @@
             <button type="submit" name="submit">Sign Up</button>
         </form>
         <?php
-          if (isset($_GET["error"])){
+          if (isset($_GET["error"])){  //Error display message
             if($_GET["error"] == "emptyinput") {
                 echo "<p> Fill in all fields!</p>";
             }
