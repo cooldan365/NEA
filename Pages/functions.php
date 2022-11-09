@@ -54,12 +54,14 @@ function uidExists($conn , $usrname) {
     mysqli_stmt_close($stmt);
 }
 
-function pwd6($conn, $password){
+function pwd6($password){
     if ($password >= 6){
         $result = true;
     }
     else{
         $result = false;
+        header("location: sup.php?error=pass2short");
+        exit();
         return $result;
     }
 }
@@ -80,9 +82,9 @@ function createUser($conn, $usrname, $password) {
     exit();
 }
 
-function emptyInputLogin($username,$password){
+function emptyInputLogin($usrname,$password){
     $result;
-    if (empty($username) || empty($password)){
+    if (empty($usrname) || empty($password)){
         $result = true;
     }
     else{

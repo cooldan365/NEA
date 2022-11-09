@@ -11,7 +11,7 @@ if(isset($_POST["submit"])){
         header("location: logup.php?error=emptyinput");
         exit();
     }
-    loginUser($conn,$username,$password);
+    loginUser($conn,$usrname,$password);
 }
 else{
     header("Location:logup.php");

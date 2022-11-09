@@ -25,6 +25,9 @@ if(isset($_POST["submit"])) {
     if(uidExists($conn,$usrname)!= false){
         header("location: sup.php?error=usernametaken");
         exit();
+    } 
+    if(pwd6($password) != true){
+        header("location: sup.php?error=pass2short");
     }
 
     createUser($conn,$usrname,$password);
