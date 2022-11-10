@@ -23,7 +23,7 @@
         </form>
     </div>
     <div class="errorm">
-        <?php
+    <?php
           if (isset($_GET["error"])){  //Error display message
             if($_GET["error"] == "emptyinput") {
                 echo "<p> Fill in all fields!</p>";

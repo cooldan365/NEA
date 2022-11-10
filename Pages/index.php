@@ -1,8 +1,3 @@
-<?php
-    session_start();
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,10 +8,10 @@
     <link rel="stylesheet" href="../styles/logsin.css">
 </head>
 <body>
-    <div class="container">
+<div class="container"><!--Ive made the container class so its easier to manipulate my webpage in css-->
        
-    <div class="images"> <!--created a class so that I can manipulate the logo in my css document -->
-        <img src="../images/homepagelogo.PNG" alt=""> 
+    <div class="images"> 
+        <img src="../images/homepagelogo.PNG" alt=""> <!--Link to the logo on my website-->
     </div>
     <div class = "buttons">
         <h1 class="ttle">Choose an Option...</h1>
@@ -27,17 +22,6 @@
             Login
         </a>
     </div>
-    </div>
+</div>
 </body>
 </html>
-
-<?php
-    if(isset($_SESSION["usersuid"])){
-        echo "<li><a href='mainhub.php'></a><li>";
-        echo "<li><a href='logout.php'></a><li>";
-    }
-    else{
-        echo "<li><a href='logup.php'></a><li>";
-        echo "<li><a href='sup.php'></a><li>";
-    }
-?>
