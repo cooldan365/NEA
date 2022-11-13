@@ -1,8 +1,8 @@
 <?php
-
-function emptyInputSignup($usrname,$password,$rpeatpass) {
-    $result;
-    if (empty($usrname) || empty($password) || empty($rpeatpass)){
+//all of these subroutines get their paramaters which are passed by value from signup.php 
+function emptyInputSignup($usrname,$password,$rpeatpass) {    
+    $result; 
+    if (empty($usrname) || empty($password) || empty($rpeatpass)){  //empty is a pre built function in php which checks for empty input
         $result = true;
     }
     else{
@@ -11,9 +11,11 @@ function emptyInputSignup($usrname,$password,$rpeatpass) {
     return $result;
 }
 
-function invalidUid($usrname) {
+//each subroutine returns a value to signup.php which echos the error in the users input.
+
+function invalidUid($usrname) {  //checks for invalid username
     $result;
-    if (!preg_match("/^[a-zA-Z0-9]*$/", $usrname)) {
+    if (!preg_match("/^[a-zA-Z0-9]*$/", $usrname)) {   //conditions for what values can be in the username, in this case is any letters and valeus from 0-9
         $result = true;
     }
     else{
@@ -32,18 +34,18 @@ function pwdMatch($password,$rpeatpass) {
     }
     return $result;
 }
-
-function uidExists($conn , $usrname) {
-    $sql = "SELECT * FROM users WHERE usersUid = ? ;";
-    $stmt = mysqli_stmt_init($conn);
-    if(!mysqli_stmt_prepare($stmt,$sql)) {
+ 
+function uidExists($conn , $usrname) {   //$conn is the variable that creates a connection to the database, $usrname is then passed into the database 
+    $sql = "SELECT * FROM users WHERE usersUid = ? ;";   //SQL to select all in values in the database and compare it to usrname which we defined usersUid in signup.php
+    $stmt = mysqli_stmt_init($conn);  //initialises a connection to the database
+    if(!mysqli_stmt_prepare($stmt,$sql)) {  //condition to check wether any values selected in $SQL are prese
         header("location: index.php?error=stmtfailed");
         exit();
     }
-    mysqli_stmt_bind_param($stmt,"s",$usrname);
-    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_param($stmt,"s",$usrname); //takes in the statement and the ? in the statemnet above becomes the username inputted 
+    mysqli_stmt_execute($stmt);  //executes the statement 
 
-    $resultData = mysqli_stmt_get_result($stmt);
+    $resultData = mysqli_stmt_get_result($stmt); 
     if($row = mysqli_fetch_assoc($resultData)){
         return $row;
     }
@@ -51,10 +53,10 @@ function uidExists($conn , $usrname) {
         $result = false;
         return $result;
     }
-    mysqli_stmt_close($stmt);
+    mysqli_stmt_close($stmt); //closes the connection once done 
 }
 
-function pwd6($password){
+function pwd6($password){ //checks wether the user has inputted a valid password
     if ($password <= 6){
         $result = true;
         header("location: sup.php?error=pass2short");
@@ -66,17 +68,17 @@ function pwd6($password){
     }
 }
 
-function createUser($conn, $usrname, $password) {
-    $sql = "INSERT INTO users (usersUid,usersPwd) VALUES (?,?);";
-    $stmt = mysqli_stmt_init($conn);
+function createUser($conn, $usrname, $password) {  //once the userinput has gone through all of these checks, and theres no errors, this function creates their account
+    $sql = "INSERT INTO users (usersUid,usersPwd) VALUES (?,?);"; //SQL statement to insert the usrname and password into the database
+    $stmt = mysqli_stmt_init($conn); //initialises the server connection
     if(!mysqli_stmt_prepare($stmt,$sql)){
         header("location: index.php?error=stmtfailed");
         exit();
     }
-    $hashedPwd = password_hash($password,PASSWORD_DEFAULT);
+    $hashedPwd = password_hash($password,PASSWORD_DEFAULT); //hashes the password in the database so it is safely stored
 
-    mysqli_stmt_bind_param($stmt,"ss",$usrname,$hashedPwd );
-    mysqli_stmt_execute($stmt);
+    mysqli_stmt_bind_param($stmt,"ss",$usrname,$hashedPwd ); //prepares to insert the following parameters in the database, the "ss" indicates im inserting only two strings in the database
+    mysqli_stmt_execute($stmt);//inputs all data into the database
     mysqli_stmt_close($stmt);
     header("location: index.php?error=none");
     exit();
