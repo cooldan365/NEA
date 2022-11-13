@@ -66,10 +66,15 @@ body {
 
 img{  /*As my logo is an image, to get the 50/50 split as shown in webpage*/
     height: auto;
-    width: 100%;
+    width: auto;
     box-shadow: none !important;
     border-radius: none;
+
 }
+
+
+
+
 
 .ttle{ /*Customises the text above the signup Button*/
     margin-bottom: 0.8%;

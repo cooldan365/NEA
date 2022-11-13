@@ -55,13 +55,13 @@ function uidExists($conn , $usrname) {
 }
 
 function pwd6($password){
-    if ($password >= 6){
+    if ($password <= 6){
         $result = true;
+        header("location: sup.php?error=pass2short");
+        exit();
     }
     else{
         $result = false;
-        header("location: sup.php?error=pass2short");
-        exit();
         return $result;
     }
 }
