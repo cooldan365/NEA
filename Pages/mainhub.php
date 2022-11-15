@@ -1,4 +1,4 @@
 <?php
     session_start();
-    echo"Hello Daniel";
+    echo"You have succesfully logged in";
 ?>

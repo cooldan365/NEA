@@ -57,7 +57,7 @@ function uidExists($conn , $usrname) {   //$conn is the variable that creates a 
 }
 
 function pwd6($password){ //checks wether the user has inputted a valid password
-    if ($password <= 6){
+    if (strlen($password) <= 6){
         $result = true;
         header("location: sup.php?error=pass2short");
         exit();
@@ -84,7 +84,7 @@ function createUser($conn, $usrname, $password) {  //once the userinput has gone
     exit();
 }
 
-function emptyInputLogin($usrname,$password){
+function emptyInputLogin($usrname,$password){ //takes the input from emptyInputLogin in logup.php and checks if there is any empty inputs 
     $result;
     if (empty($usrname) || empty($password)){
         $result = true;
@@ -95,10 +95,10 @@ function emptyInputLogin($usrname,$password){
     return $result;
 }
 
-function loginUser($conn, $usrname, $password){
+function loginUser($conn, $usrname, $password){  //if there are no empty fields, user will be directed here which performs error handline
     $uidExists = uidExists($conn,$usrname);
 
-    if($uidExists === false){
+    if($uidExists === false){  //checks if the username exists
         header("location: logup.php?error=wronglogin");
         exit();
     }
@@ -106,12 +106,12 @@ function loginUser($conn, $usrname, $password){
     $pwdHashed = $uidExists["usersPwd"];
     $checkPwd = password_verify($password, $pwdHashed);
 
-    if($checkPwd === false){
-        header("location: logup.php?error=wronglogin");
+    if($checkPwd === false){  //if the password is not the same as the one in the database, it will tell the user to reenter input 
+        header("location: logup.php?error=wronglogin"); 
         exit();
     }
-    else if ($checkPwd === true){
-        session_start();
+    else if ($checkPwd === true){ //if there are no errors, user will be able to log on
+        session_start(); //starts a session with the folowing user details
         $_SESSION["userid"] =  $uidExists["usersId"];
         $_SESSION["uid"] =  $uidExists["usersUid"];
         header("location: mainhub.php?");

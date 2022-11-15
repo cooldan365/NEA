@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studify</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../styles/signup.css">
 </head>
 <body>
     <div class="images">
@@ -36,7 +36,7 @@
                     echo "<p> Choose a proper Username!</p>";
                 }
                 else if ($_GET["error"] == "usernametaken"){
-                    echo "<p>This usernaem has already been taken!</p>";
+                    echo "<p>This username has already been taken!</p>";
                 }
                 else if ($_GET["error"] == "pass2short" ){
                     echo "<p>Password too short!</p>";
