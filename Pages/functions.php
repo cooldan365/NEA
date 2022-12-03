@@ -80,7 +80,7 @@ function createUser($conn, $usrname, $password) {  //once the userinput has gone
     mysqli_stmt_bind_param($stmt,"ss",$usrname,$hashedPwd ); //prepares to insert the following parameters in the database, the "ss" indicates im inserting only two strings in the database
     mysqli_stmt_execute($stmt);//inputs all data into the database
     mysqli_stmt_close($stmt);
-    header("location: index.php?error=none");
+    header("location: mainhub.php");
     exit();
 }
 

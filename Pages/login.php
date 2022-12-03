@@ -12,6 +12,7 @@ if(isset($_POST["submit"])){ //checks if the user has got to this stage by press
         exit();
     }
     loginUser($conn,$usrname,$password);
+    
 }
 else{
     header("Location:logup.php");

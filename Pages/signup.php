@@ -33,7 +33,7 @@ if(isset($_POST["submit"])) { //this if staement does a check to ensure the user
     }
 
     createUser($conn,$usrname,$password);
-    header("location: index.php"); 
+    header("location: ttQ.php"); 
     exit();
 }
 
