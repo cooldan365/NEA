@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../styles/timer.css">
+</head>
+<body>
+    <h1 id="title">Enter a time to start the countdown</h1>
+    <h1 id="timer"></h1>
+    <div class="con">
+        <div class="hour">Hour:</div>
+        <div class="min">Minutes:</div>
+        <div class="sec">Seconds:</div>
+    </div>  
+    
+    <div class="container">  
+        <label class="left" for="hours"></label><br>
+        <input class="left" type="text" id="hours" value="0"><br>
+        <label class="middle" for="minutes"></label><br>
+        <input class="middle" type="text" id="minutes" value="0"><br>
+        <label class="right" for="seconds"></label><br>
+        <input class="right" type="text" id="seconds" value="10"><br>
+    </div>
+    <div class="btn">
+        <button class="strtBtn" onclick="startTimer()">Start timer</button>
+        <button class="stopBtn" onclick="stopTimer()">Stop timer</button>
+    </div>    
+    <script>
+    var x; // Declare a global variable to store the interval ID
+
+    function startTimer() {
+        // Get the duration of the timer from the input fields
+        var hours = document.getElementById("hours").value;
+        var minutes = document.getElementById("minutes").value;
+        var seconds = document.getElementById("seconds").value;
+
+        // Convert the duration from hours, minutes, and seconds to milliseconds
+        var countDownDate = new Date().getTime() + hours * 3600000 + minutes * 60000 + seconds * 1000;
+
+        // Update the count down every 1 second
+        x = setInterval(function() {
+        // Get today's date and time
+        var now = new Date().getTime();
+
+        // Find the distance between now and the count down date
+        var distance = countDownDate - now;
+
+        // Time calculations for days, hours, minutes and seconds
+        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        // Display the result in the element with id="timer"
+        document.getElementById("title").style.display = "none";
+        document.getElementById("timer").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
+
+        // If the count down is finished, write some text
+        if (distance < 0) {
+            clearInterval(x);
+            document.getElementById("timer").innerHTML = "Time Over";
+        }
+        }, 1000);
+    }
+
+    function stopTimer() {
+        // Clear the interval to stop the countdown
+        clearInterval(x);
+
+        // Reset the timer display
+        document.getElementById("title").style.display = "block";
+        document.getElementById("timer").innerHTML = "0h 0m 0s";
+    }
+    </script>
+</body>
+</html>

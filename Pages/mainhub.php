@@ -26,7 +26,7 @@ $usrname = $_SESSION['uid'] //to display the users name, I would need to go into
             <a href="../FeaturePages/fCards.php" class="fCards">Flashcards</a>
         </div>
         <div class="right">
-            <a href="../FeaturePages/afeature.php" class="aFeatures">Additional Features</a>
+            <a href="../FeaturePages/aFeatures.php" class="aFeatures">Additional Features</a>
         </div>
     </div>
     <div class="middle">

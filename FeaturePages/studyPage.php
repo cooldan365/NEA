@@ -19,6 +19,7 @@ if (($open = fopen($_SERVER['DOCUMENT_ROOT'] . '/Nea/flashcardcsv/' . $set  . '.
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- linking the JavaScipt file so various functions can be performed -->
     <script src="../Scripts/studypage.js" defer></script>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,6 +28,8 @@ if (($open = fopen($_SERVER['DOCUMENT_ROOT'] . '/Nea/flashcardcsv/' . $set  . '.
     <link rel="stylesheet" href="../styles/flashcard.css">
 </head>
 <body>
+     <!--Instead of creating classes, I have id's, this is because  -->
+    <!--JS only reads ID's and not classes when taking in the data from html  -->
     <div id="invisible">
         <?php
             echo json_encode($array);
@@ -37,7 +40,6 @@ if (($open = fopen($_SERVER['DOCUMENT_ROOT'] . '/Nea/flashcardcsv/' . $set  . '.
             
         </div>
         <div id="answer">
-            
         </div>
     </div>   
     <div id="flip">
@@ -57,6 +59,8 @@ if (($open = fopen($_SERVER['DOCUMENT_ROOT'] . '/Nea/flashcardcsv/' . $set  . '.
             </button>
         </div>
     </div>
+    <!-- In this div,I have created a button which takes all the data 
+    that has been submitted and passes it into another page -->
     <div id="splash" class="nonvisible">
         <form action="handler.php" method="POST">
             <button type="input">Submit</button>

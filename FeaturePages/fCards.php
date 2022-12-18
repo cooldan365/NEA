@@ -43,14 +43,18 @@ $userS = new Flashcards($usrname);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Studify</title>
+    <link rel="stylesheet" href="../styles/FCards.css"> 
 </head>
 <body>
+<div class="title"> Flashcard Sets:</div>    
+<div class="container"> 
     <div class="t">
         <?php
             //calls the function in the class to display units found 
             $userS->displayUnits();
         ?>
     </div>
+</div>  
 </body>
 </html>
 

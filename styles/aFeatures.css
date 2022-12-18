@@ -1,0 +1,56 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background-color: #4472c4;
+    position: relative;
+}
+.container{
+    margin-top: 20%;
+    display: flex;
+    width: 100%;
+    height: 100vh;
+}
+.php{
+    margin-top: 5%;
+    margin-left: 1%;
+    color: white;
+    font-size: 200%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    
+}
+a{
+    text-decoration-line: none;
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 90%;
+    color: whitesmoke;
+    
+}
+.left{
+    margin-top: 10vh;
+    margin-left: 70px;
+    
+}
+.clock{
+    margin-top: 30vh;
+    margin-left: 40%;
+    background-color: #bed3f0;
+    width: 40%;
+    height: 20%;
+    border: 0.01rem black solid;
+    font-size: 300%;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    width: 20vw;
+    height: 10vh;
+    padding: 8%;
+
+}
+
+.right{
+    margin-left: 20%;
+}
