@@ -22,11 +22,11 @@ $usrname = $_SESSION['uid'];
     <div class="left">
         <a class = "clock" href="clock.html">Clock</a>
     </div>
-    <div class="right">
+    <div class="middle">
         <a class = "file" href="fileupload.php">File/Link Upload</a>
     </div>
-    <div class="middle">
-        <a class= "tTable" href="timetable.php">TimeTable:</a></div>
+    <div class="right">
+        <a class= "tTable" href="tTable.html">TimeTable:</a></div>
     </div>    
 </body>
 </html>

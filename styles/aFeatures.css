@@ -6,13 +6,13 @@
     position: relative;
 }
 .container{
-    margin-top: 20%;
+    margin-top: 10%;
     display: flex;
     width: 100%;
-    height: 100vh;
+    height: 20vh;
 }
+
 .php{
-    margin-top: 5%;
     margin-left: 1%;
     color: white;
     font-size: 200%;
@@ -28,18 +28,17 @@ a{
     
 }
 .left{
-    margin-top: 10vh;
-    margin-left: 70px;
+    margin-top: 2vh;
+    margin-left: 50px;
     
 }
 .clock{
-    margin-top: 30vh;
-    margin-left: 40%;
+    margin-left: 42%;
     background-color: #bed3f0;
     width: 40%;
     height: 20%;
     border: 0.01rem black solid;
-    font-size: 300%;
+    font-size: 200%;
     text-decoration: none;
     cursor: pointer;
     text-align: center;
@@ -47,10 +46,53 @@ a{
     float: left;
     width: 20vw;
     height: 10vh;
-    padding: 8%;
+    padding-top: 4%;
+    padding-right: 6%;
+}
 
+.middle{
+    margin-top: 20%;
+    margin-left: 13%;
+}
+
+.file{
+    background-color: #bed3f0;
+    width: 40%;
+    height: 20%;
+    border: 0.01rem black solid;
+    font-size: 200%;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    width: 27vw;
+    height: 10vh;
+    padding-top: 4%;
+    padding-right: 6%;
+    padding-left: 6%;
 }
 
 .right{
-    margin-left: 20%;
+    margin-top: 2vh;
+    margin-left: 3%;
+}
+
+.tTable{
+    margin-left: 15%;
+    background-color: #bed3f0;
+    width: 40%;
+    height: 20%;
+    border: 0.01rem black solid;
+    font-size: 200%;
+    text-decoration: none;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    float: left;
+    width: 20vw;
+    height: 10vh;
+    padding-top: 4%;
+    padding-right: 6%;
+
 }
