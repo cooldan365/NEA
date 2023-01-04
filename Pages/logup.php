@@ -30,7 +30,7 @@
                 else if ($_GET["error"] == "wronglogin"){
                     echo "<p>Incorrect Login Details!</p>";
                 }
-              }
+            }
         ?>
     </div>    
 </body>

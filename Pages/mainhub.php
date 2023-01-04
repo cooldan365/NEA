@@ -1,6 +1,6 @@
 <?php
 session_start(); //indicates to the algortuhmsthat any data associated with this account should be taken
-$usrname = $_SESSION['uid'] //to display the users name, I would need to go into the XAMPP server 'session' and take the username from the database so it can be displayed
+$usrname = $_SESSION['uid']; //to display the users name, I would need to go into the XAMPP server 'session' and take the username from the database so it can be displayed
 ?>
 
 <!DOCTYPE html>
