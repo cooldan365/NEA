@@ -1,3 +1,156 @@
+*{
+  background-color:#696969;
+}
+
+form{
+  background-color: white;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  margin: 0 auto;
+  padding: 20px;
+  border-radius: 5px;
+  background-color: #333;
+}
+
+.fname{
+  background-color: #333;
+}
+label {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.fileU {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 .uploaded-files{
-    height: 0px;
+  color: #767676;
+  background-color: black;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  margin-left: 18% ;
+  margin-top: 2%;
+  border: 2px solid #767676;
+  width: 60%;
+  border-radius: 10px;
+  padding: 20px;
+  cursor: pointer;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.uploaded-files a {
+  color: white;
+  background-color: black ; 
+  text-decoration: none;
+}
+
+.uploaded-files a:hover {
+  color: red; 
+}
+
+
+input[type="submit"]:hover {
+  background-color: white;
+} 
+
+.fName {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #333;
+}
+
+.defName {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+.error {
+  color: red;
+  margin-bottom: 20px;
+}
+
+.files {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  color: white;
+}
+
+a {
+  text-decoration: none;
+  font-size: large;
+  color: white;
+  margin-bottom: 10px;
+  margin-right: 3%;
+  margin-top: 3%;
+}
+
+.S {
+  width: 25%;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.uP{
+  width: 25%;
+  justify-content: center;
+}
+
+
+.welcome {
+  margin-right: 5%;
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.text{
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  background-color: #333;
+}
+
+.defName,.fileU{
+  background-color: white;
+}
+
+a{
+  padding: 3px;
+  border-radius: 4px;
+}
+
+.btnDelete{
+  margin-right: 10px;
+}
+
+a[href="../fileupload/' "]{
+  margin-right: 10%;
 }
