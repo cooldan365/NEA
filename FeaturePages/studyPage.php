@@ -27,44 +27,51 @@ if (($open = fopen($_SERVER['DOCUMENT_ROOT'] . '/Nea/flashcardcsv/' . $set  . '.
     <title>Studify</title>
     <link rel="stylesheet" href="../styles/flashcard.css">
 </head>
-<body>
-     <!--Instead of creating classes, I have id's, this is because  -->
-    <!--JS only reads ID's and not classes when taking in the data from html  -->
-    <div id="invisible">
-        <?php
-            echo json_encode($array);
-        ?>
-    </div>
-    <div id="card">
-        <div id="question">
-            
+<body>  
+        <!--Instead of creating classes, I have id's, this is because  -->
+        <!--JS only reads ID's and not classes when taking in the data from html  -->
+        <div id="invisible">
+            <?php
+                echo json_encode($array);
+            ?>
         </div>
-        <div id="answer">
+        <div class="container">
+            <div id="card">
+                <div id="question">
+                </div>
+                <div class="hidenA"id="answer">
+                </div>
+            </div>   
+            <div class="btncontainer">
+                <div id="buttons">
+                    <div id="correct">
+                        <button id="correct-btn" onclick="toggleCorrect()">
+                            Correct
+                        </button>
+                    </div>
+                    <div id="incorrect">
+                        <button id="incorrect-btn" onclick="toggleIncorrect()">
+                            Incorrect
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="flip">
+                <button id="flip" onclick="showAnswer()">
+                    Flip FlashCard
+                </button>
+            </div>
+            </div>
+        <!-- In this div,I have created a button which takes all the data 
+        that has been calculated in the prgram, such as score and endC
+        and passes it into handler.php page -->
+        <div id="splash" class="nonvisible">
+            <form action="handler.php" method="POST">
+                <input type="hidden" id="score-input" name="score" value="">
+                <input type="hidden" id="endC-input" name="endC" value="">
+                <h1 class="steps">Click submit to continue:</h1>
+                <button id="sub" type="input">Submit</button>
+            </form>
         </div>
-    </div>   
-    <div id="flip">
-        <button id="flip" onclick="toggleFirst()">
-            Flip Button
-        </button>
-    </div>
-    <div id="buttons">
-        <div id="correct">
-            <button id="correct-btn" onclick="toggleCorrect()">
-                Correct
-            </button>
-        </div>
-        <div id="incorrect">
-            <button id="incorrect-btn" onclick="toggleIncorrect()">
-                Incorrect
-            </button>
-        </div>
-    </div>
-    <!-- In this div,I have created a button which takes all the data 
-    that has been submitted and passes it into another page -->
-    <div id="splash" class="nonvisible">
-        <form action="handler.php" method="POST">
-            <button type="input">Submit</button>
-        </form>
-    </div>
-</body>
+</body> 
 </html>

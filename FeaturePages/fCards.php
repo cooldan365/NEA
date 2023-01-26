@@ -24,7 +24,7 @@ class Flashcards
             if ($value != '.' && $value != '..') {
                 $value = str_replace('.csv', '', $value);
                 $value = str_replace('.txt', '', $value);
-                //when displaying the files, the program will remove the .csv ot .txt
+                //when displaying the different flashcards, the program will remove the .csv or .txt
                 echo '<a href = "StudyPage.php?set=' . $value . '"><div id="unit">' . $value . '</div></a>';
                 //displays the sets on the screen 
             }

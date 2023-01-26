@@ -3,37 +3,33 @@ session_start(); // Start a new session or resume an existing one
 $name = $_SESSION['uid'];
 // Check if the file was uploaded
 if(isset($_FILES['file'])) {
-    //error function is the file upload doesnt work, with the apppropriate error message
     if($_FILES['file']['error'] > 0) {
         echo '<div class = "error">';
         echo 'Error:  "No file uploaded" <br>';
         echo '</div>';
 
     } else {
-        // Get the uploaded files
+        // Get the uploaded file
         $file = $_FILES['file'];
 
-        // this function splits the uploaded file name into different parts
-        //such as the extention of the file.csv,pdf and adds the username of the person to the file name
+        // Get the file name and extension
         $file_name = $file['name'];
         $file_tmp = $file['tmp_name'];
         $file_ext = explode('.', $file_name);
         $file_ext = strtolower(end($file_ext));
 
-        // varibale $allowed is used to ensure that there are certain files 
-        //file types the user is uploading
+        // Allow certain file formats
         $allowed_extensions = array("jpg", "jpeg", "png", "pdf","txt","csv");
         if(in_array($file_ext, $allowed_extensions)) {
             // Check if the definedName key is set and has a non-empty value
             if(isset($_POST['definedName']) && !empty($_POST['definedName'])) {
                 $file_name_new = $name . $_POST['definedName'] . '.' . $file_ext;
             } else {
-                // Set a default file name if the definedName key is not set and is then saved
+                // Set a default file name if the definedName key is not set
                 $file_name_new = $name . 'default' . '.' . $file_ext;
             }
 
-            // Set the file destination of where the file should be stored
-            //with the correct file name to identify it 
+            // Set the file destination
             $file_destination = '../fileupload/' . $file_name_new;
 
             // Move the file to the destination
@@ -42,16 +38,27 @@ if(isset($_FILES['file'])) {
     }
 }
 
-//function to delete the files displayed on the website
+// Delete a file if the delete button was clicked
+$uploaded_files = array_diff(scandir('../fileupload/'), array('.', '..'));
+foreach($uploaded_files as $uploaded_file) {
+    $username_start = strpos($uploaded_file, $name);
+    if($username_start === 0) {
+        echo '<a href="../fileupload/' . $uploaded_file . '" target="_blank">' . $uploaded_file . '</a>';
+        echo '<form action="fileupload.php" method="post" style="display: inline;">';
+        echo '<input class="D" type="submit" value="Delete">';
+        echo '</form>';
+        echo '<br>';
+    }
+
+}
 if(isset($_POST['delete'])) {
-    //if there is a delete request, the program goes to the place where the user files are located
-    // and deletes them
     $file_to_delete = '../fileupload/' . $_POST['delete'];
     if(file_exists($file_to_delete)) {
-        //php fnction that permenantly deletees files
         unlink($file_to_delete);
     }
 }
+
+
 ?>
 
 <!DOCTYPE html>
@@ -61,7 +68,7 @@ if(isset($_POST['delete'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Upload, Studify</title>
-    <link rel="stylesheet" href="../styles/fileUpload.css">
+    <link rel="stylesheet" href="">
 </head>
 <body>
     <div class="welcome">
@@ -78,29 +85,6 @@ if(isset($_POST['delete'])) {
             <input class="defName" type="text" name="definedName" id="definedName">
         </div>
     </form>
-    <!-- form which allows for the file upload to occur -->
-    <div class="uploaded-files">
-            <?php
-            // scans the local desktop for the fileupload folder
-            $uploaded_files = array_diff(scandir('../fileupload/'), array('.', '..'));
-            //starts a loop to search for each uploade file in the folder
-            foreach($uploaded_files as $uploaded_file) {
-                //compares the useranem of the current session and the one in the uploaded file
-                $username_start = strpos($uploaded_file, $name);
-                if($username_start === 0) {
-                    //displays the files bound to that specific username:
-                    echo '<a href="../fileupload/' . $uploaded_file . '" target="_blank">' . $uploaded_file . '</a>';
-                    echo '<form action="fileupload.php" method="post" style="display: inline;">';
-                    //delete function for any file uploaded 
-                    echo '<input type="hidden" name="delete" value="' . $uploaded_file . '"class="D">';
-                    echo '<input  type="submit" value="Delete">';
-                    echo '</form>';
-                    echo '<br>';
-                }
-            }
-            ?>
-        </div>
     </div>
 </body>
 </html>
-

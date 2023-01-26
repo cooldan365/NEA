@@ -1,52 +1,179 @@
+/* applies to both of the pages, one with the flashcard 
+displaying the other with the submit button */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    background-color: rgb(154, 154, 154);
+}
+
+/* this is for the page that displays the flaschards */
+.container{
+    max-width: 100%;
+    max-width: 100%;
 }
 
 #card {
-    width:50vw;
+    margin-top: 9%;
+    margin-left: 18%;
+    width: 60vw;
     height: 50vh;
     border: 4px solid black;
     border-radius: 1rem;
     display: flex;
-}
-
-#question {
-    position: absolute;
+    background-color: #3D4C53;
     justify-content: center;
     align-items: center;
-    top: 100px;
-    left: 100px;
-    width: 50px;
-    height: 50px;
-    background-color: white;
-}
-#answer {
-    position: absolute;
-    justify-content: center;
-    align-items: center;
-    top: 100px;
-    left: 100px;
-    width: 50px;
-    height: 50px;
-    background-color: white;
+    flex-direction: column;
 }
 
+
+#question,#answer {
+    background-color: #3D4C53;;
+    font-family: "JetBrains Mono",monospace;
+    font-weight: 600;
+}   
+
+
+/* all the CSS for my Incorrect and correct buttons */
+#buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8%;
+    margin-top: 1%;
+}
+
+#correct, #incorrect {
+    margin: 0 1rem;
+}
+
+#correct-btn, #incorrect-btn {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#correct-btn:hover, #incorrect-btn:hover {
+    background-color: #3E8E41;
+}
+
+#incorrect-btn {
+    background-color: #f44336; 
+}
+
+#incorrect-btn:hover {
+    background-color: #dc3545;
+}
+
+#incorrect{
+    margin-bottom: 0%;
+    border-radius: 10rem;
+}
+
+/* Css for the flip button */
+#flip {
+    margin-top: 1%;
+    display: flex;
+    justify-content: center;
+    margin-right: 5%;
+    align-items: center;
+    margin-left: .9%;
+}
+/* styles all buttons in the code */
+
+#flip button {
+    background-color: #3498db;
+    border: none;
+    color: white;
+    padding: 15px 100px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#flip button:hover {
+    background-color: #2980b9;
+}
+
+/* creates the styles for the  page with the submit button */
 #splash {
     position: absolute;
     height: 100vh;
     width: 100vw;
-    background-color: blueviolet;
+    background-color:rgb(154, 154, 154);
     top:0;
     left: 0;
     z-index: 100000;
 }
 
-.first {
-    z-index: 1000;
+
+form{
+    position: relative;
+    height: 80vh;
+    width: 80vw;
 }
 
+.steps{
+    margin-top: 9%;
+    margin-left: 37%;
+    font-family: "JetBrains Mono",monospace;
+    font-weight: 600;
+    background-image:  radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);;
+    color: transparent;
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+#sub{
+    margin-top: 1%;
+    margin-left: 40%;
+    height: 30%;
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: radial-gradient(100% 100% at 100% 0, #5adaff 0, #5468ff 100%);
+    border-radius: 6px;
+    box-shadow: rgba(45, 35, 66, .4) 0 2px 4px,rgba(45, 35, 66, .3) 0 7px 13px -3px,rgba(58, 65, 111, .5) 0 -3px 0 inset;
+    box-sizing: border-box;
+    color: #fff;
+    cursor: pointer;
+    font-family: "JetBrains Mono",monospace;
+    line-height: 1;
+    list-style: none;
+    overflow: hidden;
+    padding-left: 16px;
+    padding-right: 16px;
+    position: relative;
+    text-align: left;
+    text-decoration: none;
+    transition: box-shadow .15s,transform .15s;
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    white-space: nowrap;
+    will-change: box-shadow,transform;
+    font-size: 100px;
+}
+
+
 .nonvisible {
+    scale: 0;
+}
+
+.hidenA{
     scale: 0;
 }

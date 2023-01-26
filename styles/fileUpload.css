@@ -1,7 +1,7 @@
 *{
   background-color:#696969;
 }
-
+/* the below stylings are for the form on the webpage where you upload the file */
 form{
   background-color: white;
 }
@@ -34,6 +34,26 @@ label {
   box-sizing: border-box;
 }
 
+.S {
+  width: 25%;
+  justify-content: center;
+  background-color: black;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.fName {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #333;
+}
+
+/* these stlyes are for the items below the upload button   */
 .uploaded-files{
   color: #767676;
   background-color: black;
@@ -52,85 +72,6 @@ label {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-}
-
-.uploaded-files a {
-  color: white;
-  background-color: black ; 
-  text-decoration: none;
-}
-
-.uploaded-files a:hover {
-  color: red; 
-}
-
-
-input[type="submit"]:hover {
-  background-color: white;
-} 
-
-.fName {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #333;
-}
-
-.defName {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-  margin-bottom: 20px;
-}
-
-.error {
-  color: red;
-  margin-bottom: 20px;
-}
-
-.files {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 20px;
-  color: white;
-}
-
-a {
-  text-decoration: none;
-  font-size: large;
-  color: white;
-  margin-bottom: 10px;
-  margin-right: 3%;
-  margin-top: 3%;
-}
-
-.S {
-  width: 25%;
-  justify-content: center;
-  background-color: black;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.uP{
-  width: 25%;
-  justify-content: center;
-}
-
-
-.welcome {
-  margin-right: 5%;
-  text-align: center;
-  font-size: 48px;
-  margin-bottom: 20px;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 .text{
@@ -153,4 +94,55 @@ a{
 
 a[href="../fileupload/' "]{
   margin-right: 10%;
+}
+/* this is for the already loaded files on the website */
+.uploaded-files a {
+  color: white;
+  background-color: black ; 
+  text-decoration: none;
+}
+
+.uploaded-files a:hover {
+  color: red; 
+}
+
+/* decoration for the uploaded file links  */
+a {
+  text-decoration: none;
+  font-size: large;
+  color: white;
+  margin-bottom: 10px;
+  margin-right: 3%;
+  margin-top: 3%;
+}
+
+
+input[type="submit"]:hover {
+  background-color: white;
+} 
+
+.defName {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 20px;
+}
+
+/* displays error message */
+.error {
+  color: red;
+  margin-bottom: 20px;
+}
+
+
+/* style for the error message */
+.welcome {
+  margin-top: 10%;
+  margin-right: 5%;
+  text-align: center;
+  font-size: 48px;
+  margin-bottom: 20px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }

@@ -1,0 +1,16 @@
+  /* Add some styling for the timetable */
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+td, th {
+    border: 1px solid black;
+    padding: 5px;
+    text-align: center;
+}
+th {
+    background-color: lightgray;
+}
+.highlight {
+    background-color: yellow;
+}

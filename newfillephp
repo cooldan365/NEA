@@ -1,50 +1,6 @@
-<?php
-session_start(); // Start a new session or resume an existing one
-$name = $_SESSION['uid'];
-// Check if the file was uploaded
-if(isset($_FILES['file'])) {
-    if($_FILES['file']['error'] > 0) {
-        echo '<div class = "error">';
-        echo 'Error:  "No file uploaded" <br>';
-        echo '</div>';
-
-    } else {
-        // Get the uploaded file
-        $file = $_FILES['file'];
-
-        // Get the file name and extension
-        $file_name = $file['name'];
-        $file_tmp = $file['tmp_name'];
-        $file_ext = explode('.', $file_name);
-        $file_ext = strtolower(end($file_ext));
-
-        // Allow certain file formats
-        $allowed_extensions = array("jpg", "jpeg", "png", "pdf","txt","csv");
-        if(in_array($file_ext, $allowed_extensions)) {
-            // Check if the definedName key is set and has a non-empty value
-            if(isset($_POST['definedName']) && !empty($_POST['definedName'])) {
-                $file_name_new = $name . $_POST['definedName'] . '.' . $file_ext;
-            } else {
-                // Set a default file name if the definedName key is not set
-                $file_name_new = $name . 'default' . '.' . $file_ext;
-            }
-
-            // Set the file destination
-            $file_destination = '../fileupload/' . $file_name_new;
-
-            // Move the file to the destination
-            move_uploaded_file($file_tmp, $file_destination);
-        }
-    }
-}
-
-
-if(isset($_POST['delete'])) {
-    $file_to_delete = '../fileupload/' . $_POST['delete'];
-    if(file_exists($file_to_delete)) {
-        unlink($file_to_delete);
-    }
-}
+<?php 
+session_start(); 
+$usrname = $_SESSION['uid'];
 ?>
 
 <!DOCTYPE html>
@@ -53,41 +9,177 @@ if(isset($_POST['delete'])) {
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>File Upload, Studify</title>
-    <link rel="stylesheet" href="">
+    <title>Document</title>
 </head>
-<body>
-    <div class="welcome">
-        <?php
-            echo $name;
-        ?>
-    </div>
-    <form class="content" action="fileupload.php" method="post" enctype="multipart/form-data">
-        <label  class="text" for="file">Select a file to upload:</label>
-        <input class="fileU" type="file" name="file" id="file">
-        <input class="S"type="submit" value="Upload" name="submit">
-        <div class="fName">
-            <label class="text" for="definedName">Please give the file a name</label>
-            <input class="defName" type="text" name="definedName" id="definedName">
-        </div>
-    </form>
-    <div class="uploaded-files">
-            <?php
-            $uploaded_files = array_diff(scandir('../fileupload/'), array('.', '..'));
-            foreach($uploaded_files as $uploaded_file) {
-                $username_start = strpos($uploaded_file, $name);
-                if($username_start === 0) {
-                    echo '<a href="../fileupload/' . $uploaded_file . '" target="_blank">' . $uploaded_file . '</a>';
-                    echo '<form action="fileupload.php" method="post" style="display: inline;">';
-                    echo '<input type="hidden" name="delete" value="' . $uploaded_file . '"class="D">';
-                    echo '<input  type="submit" value="Delete">';
-                    echo '</form>';
-                    echo '<br>';
-                }
-            }
-            ?>
-        </div>
-    </div>
-</body>
+<style>
+  /* Add some styling for the timetable */
+  table {
+    border-collapse: collapse;
+  }
+  td, th {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  th {
+    background-color: lightgray;
+  }
+  .highlight {
+    background-color: yellow;
+  }
+</style>
+
+<form id="timetable-form">
+  <table id="timetable">
+    <tr>
+      <th>Time</th>
+      <th>Monday</th>
+      <th>Tuesday</th>
+      <th>Wednesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>9:00am</td>
+      <td><input type="text" name="monday-9am"></td>
+      <td><input type="text" name="tuesday-9am"></td>
+      <td><input type="text" name="wednesday-9am"></td>
+      <td><input type="text" name="thursday-9am"></td>
+      <td><input type="text" name="friday-9am"></td>
+      <td><button class="delete-button">Delete</button></td>
+</form>    
+    <script>
+        table.appendChild(newRow);
+        // Add event listeners for the delete buttons
+        const deleteButtons = document.querySelectorAll(".delete-button");
+        deleteButtons.forEach(function(deleteButton) {
+        deleteButton.addEventListener("click", function() {
+            // Delete the corresponding row when the delete button is clicked
+            const row = deleteButton.parentElement.parentElement;
+            row.remove();
+        });
+        });
+    });
+    // Add an event listener for the form submission to save the timetable data to local storage
+    const form = document.querySelector("#timetable-form");
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        // Get the form data
+        const data = {};
+        const formElements = form.elements;
+        for (let i = 0; i < formElements.length; i++) {
+        const element = formElements[i];
+        if (element.name) {
+            data[element.name] = element.value;
+        }
+        }
+        // Save the data to local storage using the current user's username as the key
+        localStorage.setItem(usrname, JSON.stringify(data));
+    });
+    </script>
+
+
+</html>
+
+
+<?php
+session_start(); // Start a new session or resume an existing one
+$usrname = $_SESSION['uid'];
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+ <style>
+  /* Add some styling for the timetable */
+  table {
+    border-collapse: collapse;
+  }
+  td, th {
+    border: 1px solid black;
+    padding: 5px;
+  }
+  th {
+    background-color: lightgray;
+  }
+  .highlight {
+    background-color: yellow;
+  }
+</style>
+
+<form id="timetable-form">
+  <table id="timetable">
+    <tr>
+      <th>Time</th>
+      <th>Monday</th>
+      <th>Tuesday</th>
+      <th>Wednesday</th>
+      <th>Thursday</th>
+      <th>Friday</th>
+      <th></th>
+    </tr>
+    <tr>
+      <td>9:00am</td>
+      <td><input type="text" name="monday-9am"></td>
+      <td><input type="text" name="tuesday-9am"></td>
+      <td><input type="text" name="wednesday-9am"></td>
+      <td><input type="text" name="thursday-9am"></td>
+      <td><input type="text" name="friday-9am"></td>
+      <td><button class="delete-button">Delete</button></td>
+    </tr>
+    <!-- Add additional rows for different times and subjects -->
+  </table>
+  <br>
+  <!-- Add a button to allow the user to add another time slot -->
+  <button id="add-time-button">Add Time</button>
+  <br><br>
+  <input type="submit" value="Save">
+</form>
+<!-- Add a JavaScript function to handle form submission, highlight a specific time slot when hovered over, and delete rows when the delete button is clicked -->
+<script>
+  const form = document.querySelector("#timetable-form");
+  form.addEventListener("submit", function(event) {
+    event.preventDefault();
+    // Add code here to save the form data (e.g., using local storage or an AJAX request)
+  });
+  // Add an event listener for the "Add Time" button to add a new row to the table
+  const addTimeButton = document.querySelector("#add-time-button");
+  addTimeButton.addEventListener("click", function() {
+    // Add a new row to the table for the additional time slot
+    const table = document.querySelector("#timetable");
+    const newRow = document.createElement("tr");
+    newRow.innerHTML = `
+      <td><input type="text" name="time"></td>
+      <td><input type="text" name="monday"></td>
+      <td><input type="text" name="tuesday"></td>
+      <td><input type="text" name="wednesday"></td>
+      <td><input type="text" name="thursday"></td>
+      <td><input type="text" name="friday"></td>
+      <td><button class="delete-button">Delete</button></td>
+    `;
+    table.appendChild(newRow);
+    // Add event listeners for the delete buttons
+    const deleteButtons = document.querySelectorAll(".delete-button");
+    deleteButtons.forEach(function(deleteButton) {
+      deleteButton.addEventListener("click", function() {
+        // Delete the corresponding row when the delete button is clicked
+        const row = deleteButton.parentElement.parentElement;
+        row.remove();
+      });
+    });
+  });
+</script>
+
+
+
+
+
+
 </html>
 

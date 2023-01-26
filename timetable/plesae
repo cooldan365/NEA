@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+u<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,12 +7,13 @@
     <title>Document</title>
     <?php
     session_start(); // Start a new session or resume an existing one
-    $name = $_SESSION['uid'];
+    $usrname = $_SESSION['uid'];
+    $filename = $usrname;
     if(isset($_POST['definedName']) && !empty($_POST['definedName'])) {
-        $file_name_new = $name . $_POST['definedName'];
+        $file_name_new = $filename . $_POST['definedName'];
     } else {
         // Set a default file name if the definedName key is not set and is then saved
-        $file_name_new = $name . 'default';
+        $file_name_new = $filename . 'default';
     }
     ?>
     <link rel="stylesheet" href="../styles/timetable.css">
@@ -41,7 +42,7 @@
     <br>
     <button id="add-time-button">Add Time</button>
     <br>
-    <button onclick="savetimetable('<?php echo $file_name_new ?>')" type="submit" >Save TimeTable</button>
+    <button onclick="savetimetable()" type="submit" >Save TimeTable</button>
     </form>
 
 <!--JavaScript function to handle form submission and to delete rows when the delete button is clicked -->
@@ -153,44 +154,49 @@
     cells[5].value = friday;
     }
     }
-    const form = document.querySelector("#timetable-form");
-    form.addEventListener("submit", function(event) {
-        event.preventDefault();
-        // get the input values
-        const inputs = document.querySelectorAll("#timetable input");
-        // create an array to store the data
-        const data = [];
-        // loop through the inputs and get their values
-        inputs.forEach(function(input) {
-            data.push(input.value);
-        });
-        // convert the data array to a csv string
-        const csv   Data = data.join(",");
-        var formData = new FormData();
-        formData.append("file", csvData);
-        formData.append("filename", "<?php echo $file_name_new ?>");
-
-        savetimetable(formData);
-    });
 
 
+    function savetimetable(filename) {
+    var rows = document.querySelectorAll("table tr");
+    var csv = [];
 
-    function savetimetable(formData) {
-        var xhr = new XMLHttpRequest();
-        // open the request
-        xhr.open("POST", "upload.php");
-        // send the request
-        xhr.send(formData);
-        // handle the response
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                alert("TimeTable saved successfully!");
-            } else {
-                alert("Failed to upload the timetable.");
-            }
-        };
+    for (var i = 0; i < rows.length; i++) {
+        var row = [], cols = rows[i].querySelectorAll("td, th");
+
+        for (var j = 0; j < cols.length; j++) {
+            row.push(cols[j].innerText);
+        }
+
+        csv.push(row.join(","));
     }
 
+    // Download CSV file
+    var csvFile;
+    var downloadLink;
+
+    // CSV file
+    csvFile = new Blob([csv.join("\n")], {type: "text/csv"});
+
+    // Download link
+    downloadLink = document.createElement("a");
+
+    // File name
+    downloadLink.download = "timetable.csv";
+
+    // Create a link to the file
+    downloadLink.href = window.URL.createObjectURL(csvFile);
+
+    // Hide download link
+    downloadLink.style.display = "none";
+
+    // Add the link to DOM
+    document.body.appendChild(downloadLink);
+
+    // Click download link
+    downloadLink.click();
+    }
+
+    });
 
 
 </script>

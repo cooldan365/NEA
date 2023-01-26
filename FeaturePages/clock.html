@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../styles/timer.css">
 </head>
 <body>
+    <!-- user enters a time in this part of the html -->
     <h1 id="title">Enter a time to start the countdown</h1>
     <h1 id="timer"></h1>
     <div class="con">
@@ -16,6 +17,7 @@
         <div class="sec">Seconds:</div>
     </div>  
     
+    <!-- containter for each part, mins,seconds and hours so that they can be passed into the script and customised in CSS -->
     <div class="container">  
         <label class="left" for="hours"></label><br>
         <input class="left" type="text" id="hours" value="0"><br>
@@ -32,6 +34,7 @@
     var x; // Declare a global variable to store the interval ID
 
     function startTimer() {
+        //all are set as variables because theyre constantly changing and not staying the same
         // Get the duration of the timer from the input fields
         var hours = document.getElementById("hours").value;
         var minutes = document.getElementById("minutes").value;
@@ -53,18 +56,18 @@
         var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-        // Display the result in the element with id="timer"
+        // Display the time in the element with id="timer"
         document.getElementById("title").style.display = "none";
         document.getElementById("timer").innerHTML = hours + "h " + minutes + "m " + seconds + "s ";
 
-        // If the count down is finished, time over will be siplayed
+        // If the count down is finihed, "distance" the timer will display the message:
         if (distance < 0) {
             clearInterval(x);
             document.getElementById("timer").innerHTML = "Time Over";
         }
         }, 1000);
     }
-
+    //function if user wishes to stop the timer midway through
     function stopTimer() {
         // Clear the interval to stop the countdown
         clearInterval(x);

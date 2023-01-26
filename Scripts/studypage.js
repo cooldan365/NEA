@@ -16,6 +16,7 @@ for (let i = 0; i < array.length; i++) {
 let score = 0;
 let currentIndex = 0;
 const end = questions.length -1;
+const endC = questions.length;
 
 //displays the question and answer
 console.log(questions);
@@ -29,16 +30,28 @@ splash = document.getElementById("splash");
 question.innerHTML = questions[currentIndex];
 answer.innerHTML = answers[currentIndex];
 
-//adds the css which allows the question to be hidden from the answer
-question.classList.add("first");
+let scoreInput = document.getElementById("score-input");
+let endCInput = document.getElementById("endC-input");
+
+//set the values of the hidden input fields before submitting the form
+scoreInput.value = score;
+endCInput.value = endC;
+function submitForm(){
+  // existing code
+  scoreInput.value = score;
+  form.submit();
+}
+
+
 
 //function to check wether the flashcard section has finsihed
 let hasfinished = () =>{
     if (questions[currentIndex] == undefined){
+
         //displays a splash page which outputs the scores and other values and hides
         //the flashcard page
-        splash.classList.remove("nonvisible");        
-
+        splash.classList.remove("nonvisible");
+        submitForm();        
     }
 };
 
@@ -46,9 +59,8 @@ let hasfinished = () =>{
 //used so that once the user is done,the attributes of first are customised in a css 
 //file, and once the user has completed the quiz, the hasfinished function will remove
 //the flashcards layer and display the splash page layer.
-let toggleFirst = () => {
-    question.classList.toggle("first")
-    answer.classList.toggle("first")
+let showAnswer = () => {
+    answer.classList.toggle("hidenA")
     hasfinished();
 };
 
@@ -56,10 +68,8 @@ let toggleCorrect = () =>{
   score += 1;
   currentIndex += 1;
   question.innerHTML = questions[currentIndex];
-  answer.innerHTML = answers[currentIndex];
-
-  question.classList.add("first");
-  answer.classList.remove("first");
+  answer.innerHTML =answers[currentIndex]  ;
+  answer.classList.add("hidenA")
 
   console.log(score);
 
@@ -71,8 +81,7 @@ let toggleIncorrect = () =>{
   question.innerHTML = questions[currentIndex];
   answer.innerHTML = answers[currentIndex];
 
-  question.classList.add("first");
-  answer.classList.remove("first");
+  answer.classList.add("hidenA")
 
   console.log(score);
   hasfinished();

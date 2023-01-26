@@ -95,7 +95,7 @@ function emptyInputLogin($usrname,$password){ //takes the input from emptyInputL
     return $result;
 }
 
-function loginUser($conn, $usrname, $password){  //if there are no empty fields, user will be directed here which performs error handline
+function loginUser($conn, $usrname, $password){  //if there are no empty fields, user will be directed here which performs error handling
     $uidExists = uidExists($conn,$usrname);
 
     if($uidExists === false){  //checks if the username exists
