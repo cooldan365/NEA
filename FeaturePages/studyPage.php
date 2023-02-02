@@ -58,7 +58,7 @@ if (($open = fopen($_SERVER['DOCUMENT_ROOT'] . '/Nea/flashcardcsv/' . $set  . '.
             </div>
             <div id="flip">
                 <button id="flip" onclick="showAnswer()">
-                    Flip FlashCard
+                    Show Answer
                 </button>
             </div>
             </div>

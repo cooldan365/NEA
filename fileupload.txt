@@ -88,3 +88,127 @@ if(isset($_POST['delete'])) {
     </div>
 </body>
 </html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+    /* Add some styling for the timetable */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+    }
+    td, th {
+        border: 1px solid black;
+        padding: 5px;
+        text-align: center;
+    }
+    th {
+        background-color: lightgray;
+    }
+    .highlight {
+        background-color: yellow;
+    }
+    </style>
+
+    <table id="timetable">
+    <tr>
+        <th></th>
+        <th>Monday</th>
+        <th>Tuesday</th>
+        <th>Wednesday</th>
+        <th>Thursday</th>
+        <th>Friday</th>
+        <th></th>
+    </tr>
+    <tr>
+        <td>9:00am</td>
+        <td><input type="text" name="monday-9am"></td>
+        <td><input type="text" name="tuesday-9am"></td>
+        <td><input type="text" name="wednesday-9am"></td>
+        <td><input type="text" name="thursday-9am"></td>
+        <td><input type="text" name="friday-9am"></td>
+        <td><button class="delete-button">Delete</button></td>
+    </tr>
+    </table>
+    <br>
+    <!--button to allow the user to add another time slot -->
+    <button id="add-time-button">Add Time</button>
+    <br><br>
+    <input type="submit" value="Save">
+    <input type="file" id="file-input" accept=".csv">
+    <button id="open-button">Open Timetable</button>
+
+
+<script>
+    // Get the table element
+    var table = document.getElementById("timetable");
+
+    // Get the "Add Time" button element
+    var addTimeButton = document.getElementById("add-time-button");
+
+    // Add an event listener for the "Add Time" button
+    addTimeButton.addEventListener("click", function() {
+        // Get the new time from user input
+        var newTime = prompt("Enter the new time:");
+        if (newTime != null) {
+            // Create a new row element
+            var newRow = table.insertRow();
+
+            // Create cells for the new row
+            var timeCell = newRow.insertCell();
+            var mondayCell = newRow.insertCell();
+            var tuesdayCell = newRow.insertCell();
+            var wednesdayCell = newRow.insertCell();
+            var thursdayCell = newRow.insertCell();
+            var fridayCell = newRow.insertCell();
+            var deleteCell = newRow.insertCell();
+
+            // Add content to the cells
+            timeCell.innerHTML = newTime;
+            mondayCell.innerHTML = "<input type='text' name='monday-newtime'>";
+            tuesdayCell.innerHTML = "<input type='text' name='tuesday-newtime'>";
+            wednesdayCell.innerHTML = "<input type='text' name='wednesday-newtime'>";
+            thursdayCell.innerHTML = "<input type='text' name='thursday-newtime'>";
+            fridayCell.innerHTML = "<input type='text' name='friday-newtime'>";
+            deleteCell.innerHTML = "<button class='delete-button'>Delete</button>";
+
+            // Add event listener for the new delete button
+            var newDeleteButton = deleteCell.querySelector(".delete-button");
+            newDeleteButton.addEventListener("click", function() {
+                // Check if table have at least one row
+                if (table.rows.length > 2) {
+                    table.deleteRow(newRow.rowIndex);
+                } else {
+                    alert("At least one row is required!");
+                }
+            });
+        }
+    });
+
+    // Add event listeners for the existing delete buttons
+    var deleteButtons = document.getElementsByClassName("delete-button");
+    for (var i = 0; i < deleteButtons.length; i++) {
+        deleteButtons[i].addEventListener("click", function() {
+            // Check if table have at least one row
+            if (table.rows.length > 2) {
+                var rowToDelete = this.parentNode.parentNode;
+                table.deleteRow(rowToDelete.rowIndex);
+            } else {
+                alert("At least one row is required!");
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

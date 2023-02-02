@@ -47,7 +47,7 @@
                         echo "<span class='good'>" . "Your raw score is " . $rawScore . " and your percentage is " . $percentage . "%" . " Good!" . "</span>";
                     } elseif ($percentage < 50) {
                         echo "<span class='couldbebetter'>" . "Your raw score is " . $rawScore . " and your percentage is " . $percentage . "%" . " Could be better!" . "</span>";
-                    } elseif ($percentage < 20) {
+                    } elseif ($percentage < 20 && $percentage > 1) {
                         echo "<span class='needsimprovement'>" . "Your raw score is " . $rawScore . " and your percentage is " . $percentage . "%" . " Needs improvement!" . "</span>";
                     } else {
                         echo "<span class='default'>" . "Your raw score is " . $rawScore . " and your percentage is " . $percentage . "%" . "</span>";
